@@ -1,10 +1,12 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+  <q-page class="flex flex-center column">
+
+    <q-input v-model="name" label="Name" />
+    <!-- create button with the label Notify me with icon message -->
+
+    <q-btn class="q-mt-md" color="primary" size="xl" label="Notify me" icon="send" @click="notifyMe" />
+
+
   </q-page>
 </template>
 
@@ -12,6 +14,32 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'IndexPage'
+  name: 'IndexPage',
+  // write the handle of notify me
+
+  methods: {
+
+    notifyMe() {
+      this.$q.notify({
+        message: `Hello ${this.name}`,
+        color: 'positive',
+        icon: 'announcement',
+        position: 'top',
+        timeout: 2000
+      })
+
+    }
+
+
+  },
+
+
+
+  data() {
+    return {
+      name: ''
+    }
+  }
+
 })
 </script>
